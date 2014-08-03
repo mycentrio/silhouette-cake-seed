@@ -17,7 +17,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
  *
  * @param userDAO The user DAO implementation.
  */
-class UserServiceImpl()(userDAO: UserDAO) extends UserService {
+class UserServiceImpl(userDAO: UserDAO) extends UserService {
 
   /**
    * Retrieves a user that matches the specified login info.
