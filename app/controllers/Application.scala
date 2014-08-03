@@ -1,9 +1,15 @@
 package controllers
 
-import play.api._
-import play.api.mvc._
+import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
+import com.mohiva.play.silhouette.core.Environment
+import com.mohiva.play.silhouette.core.Silhouette
 
-class MyApplication() extends Controller {
+import models.User
+import play.api.mvc.Action
+import utils.EnvironmentModule
+
+object MyApplication
+  extends Silhouette[User, CachedCookieAuthenticator] with EnvironmentModule {
 
   def index = Action {
     Ok(views.html.index("Your new application is ready."))

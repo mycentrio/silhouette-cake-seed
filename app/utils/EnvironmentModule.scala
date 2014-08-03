@@ -14,7 +14,7 @@ trait EnvironmentModule extends AuthenticatorServiceModule with UserServiceModul
   lazy val cacheLayer = new PlayCacheLayer
   lazy val eventBus = EventBus()
   lazy val idGenerator = new SecureRandomIDGenerator()
-  lazy val environment: Environment[User, CachedCookieAuthenticator] = {
+  lazy val env: Environment[User, CachedCookieAuthenticator] = {
     Environment[User, CachedCookieAuthenticator](
       userService,
       authenticatorService,
