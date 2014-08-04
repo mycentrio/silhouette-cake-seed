@@ -1,19 +1,18 @@
 package controllers
 
-import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
-import com.mohiva.play.silhouette.core.Silhouette
-import models.User
-import utils.EnvironmentModule
-import play.api.mvc.Action
-import com.mohiva.play.silhouette.core.providers.CredentialsProvider
 import scala.concurrent.Future
-import com.mohiva.play.silhouette.core.exceptions.AuthenticationException
+
+import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
 import com.mohiva.play.silhouette.core.LoginEvent
-import play.api.libs.concurrent.Execution.Implicits._
-import play.api._
-import play.api.mvc._
+import com.mohiva.play.silhouette.core.Silhouette
+import com.mohiva.play.silhouette.core.exceptions.AuthenticationException
+import com.mohiva.play.silhouette.core.providers.CredentialsProvider
+
 import forms.SignInForm
-import com.mohiva.play.silhouette.core.Environment
+import models.User
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.mvc.Action
+import utils.EnvironmentModule
 
 /**
  * The credentials auth controller.

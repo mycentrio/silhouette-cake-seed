@@ -1,19 +1,22 @@
 package controllers
 
-import forms.SignUpForm
+import java.util.UUID
+
+import scala.concurrent.Future
+
+import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
 import com.mohiva.play.silhouette.core.LoginEvent
 import com.mohiva.play.silhouette.core.LoginInfo
 import com.mohiva.play.silhouette.core.SignUpEvent
 import com.mohiva.play.silhouette.core.Silhouette
-import utils.EnvironmentModule
-import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
-import play.api.mvc.Action
-import com.mohiva.play.silhouette.core.providers.CredentialsProvider
-import scala.concurrent.Future
-import models.User
-import java.util.UUID
 import com.mohiva.play.silhouette.core.exceptions.AuthenticationException
-import play.api.libs.concurrent.Execution.Implicits._
+import com.mohiva.play.silhouette.core.providers.CredentialsProvider
+
+import forms.SignUpForm
+import models.User
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.mvc.Action
+import utils.EnvironmentModule
 
 /**
  * The sign up controller.

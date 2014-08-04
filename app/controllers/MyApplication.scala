@@ -1,13 +1,15 @@
 package controllers
 
 import scala.concurrent.Future
+
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
+import com.mohiva.play.silhouette.core.LogoutEvent
 import com.mohiva.play.silhouette.core.Silhouette
+
 import forms.SignInForm
 import forms.SignUpForm
 import models.User
 import utils.EnvironmentModule
-import com.mohiva.play.silhouette.core.LogoutEvent
 
 object MyApplication
   extends Silhouette[User, CachedCookieAuthenticator]
