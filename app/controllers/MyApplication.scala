@@ -7,7 +7,8 @@ import models.User
 import utils.EnvironmentModule
 
 object MyApplication
-  extends Silhouette[User, CachedCookieAuthenticator] with EnvironmentModule {
+  extends Silhouette[User, CachedCookieAuthenticator]
+  with EnvironmentModule {
 
   /**
    * Renders the index page.

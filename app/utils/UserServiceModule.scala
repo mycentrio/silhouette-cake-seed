@@ -5,7 +5,7 @@ import models.services.UserServiceImpl
 
 trait UserServiceModule {
 
-  lazy val userDAO = new UserDAOImpl()
+  lazy val userDAO = new UserDAOImpl
   lazy val userService = new UserServiceImpl(userDAO)
 
 }
