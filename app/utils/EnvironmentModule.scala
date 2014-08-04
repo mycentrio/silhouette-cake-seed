@@ -1,11 +1,13 @@
 package utils
 
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
+import com.mohiva.play.silhouette.contrib.services.GravatarService
 import com.mohiva.play.silhouette.contrib.utils.BCryptPasswordHasher
 import com.mohiva.play.silhouette.contrib.utils.PlayCacheLayer
 import com.mohiva.play.silhouette.contrib.utils.SecureRandomIDGenerator
 import com.mohiva.play.silhouette.core.Environment
 import com.mohiva.play.silhouette.core.EventBus
+import com.mohiva.play.silhouette.core.utils.PlayHTTPLayer
 
 import models.User
 import models.daos.OAuth1InfoDAO
@@ -26,6 +28,8 @@ trait EnvironmentModule
   lazy val oauth1InfoDAO = new OAuth1InfoDAO
   lazy val oauth2InfoDAO = new OAuth2InfoDAO
   lazy val passwordHasher = new BCryptPasswordHasher
+  lazy val httpLayer = new PlayHTTPLayer
+  lazy val avatarService = new GravatarService(httpLayer)
   implicit lazy val env: Environment[User, CachedCookieAuthenticator] = {
     Environment[User, CachedCookieAuthenticator](
       userService,
