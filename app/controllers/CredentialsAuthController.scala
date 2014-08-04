@@ -42,7 +42,7 @@ object CredentialsAuthController
           case Some(user) => env.authenticatorService.create(user).map {
             case Some(authenticator) =>
               env.eventBus.publish(LoginEvent(user, request, request2lang))
-              env.authenticatorService.send(authenticator, Redirect("www.google.com"))
+              env.authenticatorService.send(authenticator, Redirect(routes.MyApplication.index))
             case None => throw new AuthenticationException("Couldn't create an authenticator")
           }
           case None => Future.failed(new AuthenticationException("Couldn't find user"))
