@@ -8,10 +8,8 @@ import com.mohiva.play.silhouette.core.providers.PasswordInfo
 
 trait AuthInfoServiceModule {
 
-  lazy val authInfoService = new DelegableAuthInfoService(passwordInfoDAO, oauth1InfoDAO, oauth2InfoDAO)
+  lazy val authInfoService = new DelegableAuthInfoService(passwordInfoDAO)
 
   def passwordInfoDAO: DelegableAuthInfoDAO[PasswordInfo]
-  def oauth1InfoDAO: DelegableAuthInfoDAO[OAuth1Info]
-  def oauth2InfoDAO: DelegableAuthInfoDAO[OAuth2Info]
 
 }

@@ -25,11 +25,7 @@ trait EnvironmentModule
   lazy val eventBus = EventBus()
   lazy val idGenerator = new SecureRandomIDGenerator
   lazy val passwordInfoDAO = new PasswordInfoDAO
-  lazy val oauth1InfoDAO = new OAuth1InfoDAO
-  lazy val oauth2InfoDAO = new OAuth2InfoDAO
   lazy val passwordHasher = new BCryptPasswordHasher
-  lazy val httpLayer = new PlayHTTPLayer
-  lazy val avatarService = new GravatarService(httpLayer)
   implicit lazy val env: Environment[User, CachedCookieAuthenticator] = {
     Environment[User, CachedCookieAuthenticator](
       userService,
