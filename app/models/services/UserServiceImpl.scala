@@ -47,20 +47,14 @@ class UserServiceImpl(userDAO: UserDAO) extends UserService {
     userDAO.find(profile.loginInfo).flatMap {
       case Some(user) => // Update user with profile
         userDAO.save(user.copy(
-          firstName = profile.firstName,
-          lastName = profile.lastName,
-          fullName = profile.fullName,
-          email = profile.email,
-          avatarURL = profile.avatarURL))
+          username = profile.email.getOrElse(""),
+          email = profile.email.getOrElse("")))
       case None => // Insert a new user
         userDAO.save(User(
           userID = UUID.randomUUID(),
           loginInfo = profile.loginInfo,
-          firstName = profile.firstName,
-          lastName = profile.lastName,
-          fullName = profile.fullName,
-          email = profile.email,
-          avatarURL = profile.avatarURL))
+          username = profile.email.getOrElse(""),
+          email = profile.email.getOrElse("")))
     }
   }
 }

@@ -13,7 +13,6 @@ object Global extends GlobalSettings with SecuredSettings with EnvironmentModule
 
   override def onStart(app: Application) {
     play.api.Logger.info("Application has started")
-    play.api.Logger.info("env: " + env)
   }
 
 }

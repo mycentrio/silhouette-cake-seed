@@ -22,7 +22,7 @@ object MyApplication
    */
   def index = UserAwareAction { implicit request =>
     val userName = request.identity match {
-      case Some(identity) => identity.fullName
+      case Some(identity) => identity.username
       case None => "Guest"
     }
     Ok(views.html.index(request.identity, "Hello %s".format(userName)))
@@ -68,7 +68,7 @@ object MyApplication
    * @returns The result to send to the client.
    */
   def home = SecuredAction { implicit request =>
-    val userName = request.identity.fullName
+    val userName = request.identity.username
     Ok("Hello %s".format(userName))
   }
 

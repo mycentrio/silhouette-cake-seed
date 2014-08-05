@@ -45,14 +45,10 @@ object SignUpController
         val user = User(
           userID = UUID.randomUUID(),
           loginInfo = loginInfo,
-          firstName = Some(data.firstName),
-          lastName = Some(data.lastName),
-          fullName = Some(data.firstName + " " + data.lastName),
-          email = Some(data.email),
-          avatarURL = None)
+          username = data.username,
+          email = data.email)
         for {
-          avatar <- avatarService.retrieveURL(data.email)
-          user <- userService.save(user.copy(avatarURL = avatar))
+          user <- userService.save(user)
           authInfo <- authInfoService.save(loginInfo, authInfo)
           maybeAuthenticator <- env.authenticatorService.create(user)
         } yield {
