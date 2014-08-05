@@ -7,7 +7,6 @@ GET     /                           controllers.MyApplication.index
 GET     /signIn                     controllers.MyApplication.signIn
 GET     /signUp                     controllers.MyApplication.signUp
 GET     /signOut                    controllers.MyApplication.signOut
-GET     /home                       controllers.MyApplication.home
 
 # auth
 POST    /authenticate/credentials   controllers.CredentialsAuthController.authenticate

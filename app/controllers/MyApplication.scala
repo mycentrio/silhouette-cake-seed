@@ -62,14 +62,4 @@ object MyApplication
     Future.successful(env.authenticatorService.discard(Redirect(routes.MyApplication.index)))
   }
 
-  /**
-   * Renders the home page.
-   *
-   * @returns The result to send to the client.
-   */
-  def home = SecuredAction { implicit request =>
-    val userName = request.identity.username
-    Ok("Hello %s".format(userName))
-  }
-
 }
