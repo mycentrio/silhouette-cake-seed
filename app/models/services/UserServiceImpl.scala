@@ -35,26 +35,4 @@ class UserServiceImpl(userDAO: UserDAO) extends UserService {
    */
   def save(user: User) = userDAO.save(user)
 
-  /**
-   * Saves the social profile for a user.
-   *
-   * If a user exists for this profile then update the user, otherwise create a new user with the given profile.
-   *
-   * @param profile The social profile to save.
-   * @return The user for whom the profile was saved.
-   */
-  def save[A <: AuthInfo](profile: CommonSocialProfile[A]) = {
-    userDAO.find(profile.loginInfo).flatMap {
-      case Some(user) => // Update user with profile
-        userDAO.save(user.copy(
-          username = profile.email.getOrElse(""),
-          email = profile.email.getOrElse("")))
-      case None => // Insert a new user
-        userDAO.save(User(
-          userID = UUID.randomUUID(),
-          loginInfo = profile.loginInfo,
-          username = profile.email.getOrElse(""),
-          email = profile.email.getOrElse("")))
-    }
-  }
 }
