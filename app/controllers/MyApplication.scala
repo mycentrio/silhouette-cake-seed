@@ -25,7 +25,7 @@ object MyApplication
       case Some(identity) => identity.fullName
       case None => "Guest"
     }
-    Ok("Hello %s".format(userName))
+    Ok(views.html.index(request.identity, "Hello %s".format(userName)))
   }
 
   /**
