@@ -23,8 +23,6 @@ object CredentialsAuthController
   extends Silhouette[User, CachedCookieAuthenticator]
   with EnvironmentModule {
 
-  //implicit val env: Environment[User, CachedCookieAuthenticator] = this.env
-
   /**
    * Authenticates a user against the credentials provider.
    *
