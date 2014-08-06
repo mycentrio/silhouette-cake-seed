@@ -1,17 +1,13 @@
 package utils
 
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
-import com.mohiva.play.silhouette.contrib.services.GravatarService
 import com.mohiva.play.silhouette.contrib.utils.BCryptPasswordHasher
 import com.mohiva.play.silhouette.contrib.utils.PlayCacheLayer
 import com.mohiva.play.silhouette.contrib.utils.SecureRandomIDGenerator
 import com.mohiva.play.silhouette.core.Environment
 import com.mohiva.play.silhouette.core.EventBus
-import com.mohiva.play.silhouette.core.utils.PlayHTTPLayer
 
 import models.User
-import models.daos.OAuth1InfoDAO
-import models.daos.OAuth2InfoDAO
 import models.daos.PasswordInfoDAO
 import models.services.UserService
 
