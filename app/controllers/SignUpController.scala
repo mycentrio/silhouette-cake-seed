@@ -1,7 +1,5 @@
 package controllers
 
-import java.util.UUID
-
 import scala.concurrent.Future
 
 import com.mohiva.play.silhouette.contrib.services.CachedCookieAuthenticator
@@ -14,6 +12,7 @@ import com.mohiva.play.silhouette.core.providers.CredentialsProvider
 
 import forms.SignUpForm
 import models.User
+import models.services.UserCreationException
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.Action
 import utils.EnvironmentModule
@@ -60,8 +59,9 @@ object SignUpController
           }
         }
         result.recover {
-          case e: Exception => Forbidden(e.toString())
+          case UserCreationException(msg, t) => Forbidden(msg)
         }
       })
   }
 }
+

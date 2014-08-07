@@ -6,7 +6,7 @@ import scala.concurrent.Future
 import com.mohiva.play.silhouette.core.LoginInfo
 
 import models.User
-
+import models.services.UserCreationException
 import UserDAOImpl._
 
 /**
@@ -39,7 +39,7 @@ class UserDAOImpl extends UserDAO {
    */
   def save(user: User) = {
     if (users.contains(user.username)) {
-      Future.failed(new Exception("username already exists."))
+      Future.failed(new UserCreationException("username already exists."))
     } else {
       users += (user.username -> user)
       Future.successful(user)
