@@ -43,11 +43,10 @@ object SignUpController
         val loginInfo = LoginInfo(CredentialsProvider.Credentials, data.email)
         val authInfo = passwordHasher.hash(data.password)
         val user = User(
-          userID = UUID.randomUUID(),
           loginInfo = loginInfo,
           username = data.username,
           email = data.email)
-        for {
+        val result = for {
           user <- userService.save(user)
           authInfo <- authInfoService.save(loginInfo, authInfo)
           maybeAuthenticator <- env.authenticatorService.create(user)
@@ -59,6 +58,9 @@ object SignUpController
               env.authenticatorService.send(authenticator, Redirect(routes.MyApplication.index))
             case None => throw new AuthenticationException("Couldn't create an authenticator")
           }
+        }
+        result.recover {
+          case e: Exception => Forbidden(e.toString())
         }
       })
   }

@@ -1,7 +1,5 @@
 package models.daos
 
-import java.util.UUID
-
 import scala.collection.mutable
 import scala.concurrent.Future
 
@@ -26,12 +24,12 @@ class UserDAOImpl extends UserDAO {
     users.find { case (id, user) => user.loginInfo == loginInfo }.map(_._2))
 
   /**
-   * Finds a user by its user ID.
+   * Finds a user by its username.
    *
-   * @param userID The ID of the user to find.
-   * @return The found user or None if no user for the given ID could be found.
+   * @param username The username of the user to find.
+   * @return The found user or None if no user for the given username could be found.
    */
-  def find(userID: UUID) = Future.successful(users.get(userID))
+  def find(username: String) = Future.successful(users.get(username))
 
   /**
    * Saves a user.
@@ -40,8 +38,12 @@ class UserDAOImpl extends UserDAO {
    * @return The saved user.
    */
   def save(user: User) = {
-    users += (user.userID -> user)
-    Future.successful(user)
+    if (users.contains(user.username)) {
+      Future.failed(new Exception("username already exists."))
+    } else {
+      users += (user.username -> user)
+      Future.successful(user)
+    }
   }
 }
 
@@ -53,5 +55,5 @@ object UserDAOImpl {
   /**
    * The list of users.
    */
-  val users: mutable.HashMap[UUID, User] = mutable.HashMap()
+  val users: mutable.HashMap[String, User] = mutable.HashMap()
 }

@@ -22,12 +22,12 @@ trait UserDAO {
   def find(loginInfo: LoginInfo): Future[Option[User]]
 
   /**
-   * Finds a user by its user ID.
+   * Finds a user by its username.
    *
-   * @param userID The ID of the user to find.
-   * @return The found user or None if no user for the given ID could be found.
+   * @param username The username of the user to find.
+   * @return The found user or None if no user for the given username could be found.
    */
-  def find(userID: UUID): Future[Option[User]]
+  def find(username: String): Future[Option[User]]
 
   /**
    * Saves a user.

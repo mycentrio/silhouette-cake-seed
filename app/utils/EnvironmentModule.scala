@@ -31,6 +31,4 @@ trait EnvironmentModule
       eventBus)
   }
 
-  def userService: UserService
-
 }

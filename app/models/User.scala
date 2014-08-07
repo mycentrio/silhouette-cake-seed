@@ -16,7 +16,6 @@ import play.api.libs.json.Json
  * @param email The email of the authenticated provider.
  */
 case class User(
-  userID: UUID,
   loginInfo: LoginInfo,
   username: String,
   email: String) extends Identity
