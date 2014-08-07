@@ -40,7 +40,7 @@ object SignUpController
     SignUpForm.form.bindFromRequest.fold(
       form => Future.successful(BadRequest(views.html.signUp(form))),
       data => {
-        val loginInfo = LoginInfo(CredentialsProvider.Credentials, data.email)
+        val loginInfo = LoginInfo(CredentialsProvider.Credentials, data.username)
         val authInfo = passwordHasher.hash(data.password)
         val user = User(
           loginInfo = loginInfo,
